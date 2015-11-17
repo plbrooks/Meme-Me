@@ -25,7 +25,7 @@ class MemeTableViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.tableView!.reloadData()    // needed to repopulate table view
+        tableView!.reloadData()    // needed to repopulate table view
         if (allMemes.count > 0) {
             instructionLabel.hidden = true  // show instructions label
         }
@@ -60,7 +60,7 @@ class MemeTableViewController: UIViewController, UITableViewDataSource, UITableV
     
     // go to detailed view when row is selected
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeDetailViewController") as! MemeDetailViewController
+        let detailController = storyboard!.instantiateViewControllerWithIdentifier("MemeDetailViewController") as! MemeDetailViewController
         detailController.meme = allMemes[indexPath.row]
         self.navigationController!.pushViewController(detailController, animated: true)
     }

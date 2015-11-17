@@ -14,6 +14,9 @@ class MemeEditorViewController: UIViewController, UINavigationControllerDelegate
     
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
+    @IBOutlet weak var topCenterTextField: UITextField!
+    @IBOutlet weak var bottomCenterTextField: UITextField!
+    
     
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var cancel: UIBarButtonItem!
@@ -28,6 +31,9 @@ class MemeEditorViewController: UIViewController, UINavigationControllerDelegate
     let textFieldMaxChars = 25
     var topTextEntered = false
     var bottomTextEntered = false
+    var topCenterTextEntered = false
+    var bottomCenterTextEntered = false
+    var useCenterTextFields = false
     var viewOriginalFramePositionY: CGFloat = 0
     
     override func viewDidLoad() {
@@ -35,10 +41,11 @@ class MemeEditorViewController: UIViewController, UINavigationControllerDelegate
         setDefaults()  // set up text, image, and button defaults
         topTextField.delegate = self
         bottomTextField.delegate = self
+        topCenterTextField.delegate = self
+        bottomCenterTextField.delegate = self
     }
     
     override func viewWillAppear(animated: Bool) {
-        
         // assign top and bottom text field defaults
         let memeTextAttributes = [ // struct containing text font, color, size
             NSStrokeColorAttributeName: UIColor.blackColor(),NSForegroundColorAttributeName : UIColor.whiteColor(),
@@ -53,13 +60,40 @@ class MemeEditorViewController: UIViewController, UINavigationControllerDelegate
         bottomTextField.defaultTextAttributes = memeTextAttributes
         bottomTextField.textAlignment = NSTextAlignment.Center
         
+        // set up top center text field
+        topCenterTextField.defaultTextAttributes = memeTextAttributes
+        topCenterTextField.textAlignment = NSTextAlignment.Center
+        
+        // set up bottom center text field
+        bottomCenterTextField.defaultTextAttributes = memeTextAttributes
+        bottomCenterTextField.textAlignment = NSTextAlignment.Center
+        
+        // show / hide text fields
+        if useCenterTextFields == true {
+            topTextField.hidden = true
+            bottomTextField.hidden = true
+            topCenterTextField.hidden = false
+            bottomCenterTextField.hidden = false
+        } else {
+            topTextField.hidden = false
+            bottomTextField.hidden = false
+            topCenterTextField.hidden = true
+            bottomCenterTextField.hidden = true
+        }
+        
+        
+        
         if(memeFromMemeDetail != nil) { // if MemeEditor was called from MemeDetail image exists
             // show the existing image and allow it to be editted or immediately shared
-            self.showImage(self.memeFromMemeDetail!.image)
-            topTextField.text = self.memeFromMemeDetail?.topText
-            bottomTextField.text = self.memeFromMemeDetail?.bottomText
+            showImage(memeFromMemeDetail!.image)
+            topTextField.text = memeFromMemeDetail?.topText
+            bottomTextField.text = memeFromMemeDetail?.bottomText
             topTextField.enabled = true
             bottomTextField.enabled = true
+            topCenterTextField.text = memeFromMemeDetail?.topText
+            bottomCenterTextField.text = memeFromMemeDetail?.bottomText
+            topCenterTextField.enabled = true
+            bottomCenterTextField.enabled = true
             shareButton.enabled = true
             instructionLabel.hidden = true
         }
@@ -94,7 +128,7 @@ class MemeEditorViewController: UIViewController, UINavigationControllerDelegate
         }
         imagePicker.sourceType = sourceType
         presentViewController(imagePicker, animated: true, completion: nil)
-        
+
     }
 
     @IBAction func shareButton(sender: UIBarButtonItem) {
@@ -108,7 +142,11 @@ class MemeEditorViewController: UIViewController, UINavigationControllerDelegate
             (activity, success, items, error) in
             if success {
                 // selfs here because xcode complained - needed in the completion handler
-                self.save(newMeme)
+                if self.useCenterTextFields {
+                    self.save(newMeme,topText: self.topCenterTextField,bottomText: self.bottomCenterTextField)
+                } else {
+                   self.save(newMeme,topText:self.topTextField,bottomText:self.bottomTextField)
+                }
                 self.setDefaults()
                 self.showAlert()
             }
@@ -117,6 +155,7 @@ class MemeEditorViewController: UIViewController, UINavigationControllerDelegate
 
     @IBAction func cancel(sender: AnyObject) {
         setDefaults()
+        self.navigationController?.popToRootViewControllerAnimated(true)
     }
 
     // Text field processing. Each method used for both text fields
@@ -149,6 +188,12 @@ class MemeEditorViewController: UIViewController, UINavigationControllerDelegate
         topTextField.enabled = false
         bottomTextField.text = "BOTTOM"
         bottomTextField.enabled = false
+        topCenterTextField.text = "TOP"
+        topCenterTextField.enabled = false
+        topCenterTextField.hidden = true
+        bottomCenterTextField.text = "BOTTOM"
+        bottomCenterTextField.enabled = false
+        bottomCenterTextField.hidden = true
         imageView.image = nil
         shareButton.enabled = false
         instructionLabel.hidden = false
@@ -191,6 +236,19 @@ class MemeEditorViewController: UIViewController, UINavigationControllerDelegate
     func imagePickerController(picker: UIImagePickerController,
         didFinishPickingMediaWithInfo info: [String : AnyObject]) {
             if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+                if (image.size.height > image.size.width) {
+                    useCenterTextFields = false
+                    topTextField.hidden = true
+                    bottomTextField.hidden = true
+                    topCenterTextField.hidden = false
+                    bottomCenterTextField.hidden = false
+                } else {
+                    useCenterTextFields = true
+                    topTextField.hidden = false
+                    bottomTextField.hidden =  false
+                    topCenterTextField.hidden = true
+                    bottomCenterTextField.hidden = true
+                }
                 showImage(image)
                 dismissViewControllerAnimated(true, completion: nil)
             }
@@ -201,6 +259,8 @@ class MemeEditorViewController: UIViewController, UINavigationControllerDelegate
         if (imageView != nil) { // turn on keyboard
             topTextField.enabled = true
             bottomTextField.enabled = true
+            topCenterTextField.enabled = true
+            bottomCenterTextField.enabled = true
             instructionLabel.hidden = true
         }
     }
@@ -211,10 +271,8 @@ class MemeEditorViewController: UIViewController, UINavigationControllerDelegate
     
     // Handle the meme
     func generateMeme() -> UIImage {
-        
-        // hide tool and nav bars so they are not in meme image
-        toolbar.hidden = true
-        //navbar.hidden = true
+    
+        toolbar.hidden = true   // hide tool it is not in meme image
         
         // Render view to an image
         UIGraphicsBeginImageContext(view.frame.size)
@@ -223,17 +281,16 @@ class MemeEditorViewController: UIViewController, UINavigationControllerDelegate
         let memedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        // show tool and nav bars
-        toolbar.hidden = false
+        toolbar.hidden = false  // now show tool bar
         //navbar.hidden = false
         return memedImage
     }
     
     // Save the meme
-    func save (memedImage: UIImage) -> Meme {
+    func save (memedImage: UIImage,topText: UITextField, bottomText: UITextField) -> Meme {
         
         //Create the meme
-        let meme = Meme( topText: topTextField.text!, bottomText: bottomTextField.text!,image:
+        let meme = Meme( topText: topText.text!, bottomText: bottomText.text!,image:
             imageView.image!, memedImage: memedImage)
         
         //Save the meme
@@ -246,7 +303,7 @@ class MemeEditorViewController: UIViewController, UINavigationControllerDelegate
     func showAlert() {
         let alert=UIAlertController(title: "Share", message: "Your meme has been shared!", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: .Default) {action -> Void in
-            self.navigationController?.popToRootViewControllerAnimated(true)
+            self.navigationController?.popToRootViewControllerAnimated(true)    // self needed
             })
         presentViewController(alert, animated: true, completion: nil)
     }

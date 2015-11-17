@@ -20,8 +20,8 @@ class MemeCollectionViewController: UICollectionViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         let space: CGFloat = 3.0
-        let width = (self.view.frame.size.width - (2 * space)) / 3.0
-        let height = (self.view.frame.size.height - (2 * space)) / 5.0
+        let width = (self.view.frame.size.width - (2 * space)) / 3.0    // needed
+        let height = (self.view.frame.size.height - (2 * space)) / 5.0  // needed
         flowLayout.minimumInteritemSpacing = space
         flowLayout.minimumLineSpacing = space
         flowLayout.itemSize = CGSizeMake(width, height)
@@ -29,7 +29,7 @@ class MemeCollectionViewController: UICollectionViewController  {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.collectionView?.reloadData()   // repopulate collection view
+        collectionView?.reloadData()   // repopulate collection view
     }
     
     
@@ -50,10 +50,10 @@ class MemeCollectionViewController: UICollectionViewController  {
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath
     indexPath: NSIndexPath) {
-        let object: AnyObject = self.storyboard!.instantiateViewControllerWithIdentifier("MemeDetailViewController")
+        let object: AnyObject = storyboard!.instantiateViewControllerWithIdentifier("MemeDetailViewController")
         let detailController = object as! MemeDetailViewController
         detailController.meme = allMemes[indexPath.row]
-        self.navigationController!.pushViewController(detailController, animated: true) // Present the view controller using navigation
+        navigationController!.pushViewController(detailController, animated: true) // Present the view controller using navigation
     }
     
 }
