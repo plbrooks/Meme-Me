@@ -379,13 +379,7 @@
                             <constraint firstItem="HLH-HH-wet" firstAttribute="top" secondItem="3SD-9d-Dbj" secondAttribute="bottom" id="gGf-Xj-08n"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Meme Detail" id="10l-C8-ka6">
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="Oij-LK-ePF">
-                            <connections>
-                                <segue destination="4T3-iR-sT6" kind="presentation" identifier="MemeDetailToEditorSegue" id="x1a-5T-WIw"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Meme Detail" id="10l-C8-ka6"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="imageView" destination="3SD-9d-Dbj" id="5he-MV-5iU"/>
@@ -401,6 +395,6 @@
         <image name="Table" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="x1a-5T-WIw"/>
+        <segue reference="P2G-1x-ldR"/>
     </inferredMetricsTieBreakers>
 </document>

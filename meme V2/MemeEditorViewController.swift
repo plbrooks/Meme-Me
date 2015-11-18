@@ -36,6 +36,8 @@ class MemeEditorViewController: UIViewController, UINavigationControllerDelegate
     var viewOriginalFramePositionY: CGFloat = 0
     var activeField: UITextField?
     
+    var pickedImage:UIImage?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setDefaults()  // set up text, image, and button defaults
@@ -156,7 +158,7 @@ class MemeEditorViewController: UIViewController, UINavigationControllerDelegate
 
     @IBAction func cancel(sender: AnyObject) {
         setDefaults()
-        self.navigationController?.popToRootViewControllerAnimated(true)
+        navigationController?.popToRootViewControllerAnimated(true)
     }
 
     // Text field processing. Each method used for both text fields
@@ -264,6 +266,7 @@ class MemeEditorViewController: UIViewController, UINavigationControllerDelegate
                     bottomCenterTextField.hidden = true
                 }
                 showImage(image)
+                pickedImage = image
                 dismissViewControllerAnimated(true, completion: nil)
             }
     }
@@ -304,7 +307,7 @@ class MemeEditorViewController: UIViewController, UINavigationControllerDelegate
         
         //Create the meme
         let meme = Meme( topText: topText.text!, bottomText: bottomText.text!,image:
-            imageView.image!, memedImage: memedImage)
+            pickedImage!, memedImage: memedImage)
         
         //Save the meme
         let appDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)

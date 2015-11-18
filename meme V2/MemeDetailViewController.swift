@@ -15,7 +15,7 @@ class MemeDetailViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.imageView!.image = meme?.memedImage    // needed
+        imageView!.image = meme?.memedImage    // needed
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
