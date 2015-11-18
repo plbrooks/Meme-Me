@@ -41,20 +41,18 @@ class MemeTableViewController: UIViewController, UITableViewDataSource, UITableV
         
         /* set the text label by combining top and bottom meme text fields
         logic:
-        if total lengths <= 16 print both fields
-        if total lengths > 16 print top field up to a max of 8 chars + print out bottom field to get total length to 16
+        if total lengths <= 20 print both fields
+        if total lengths > 20 print top field up to a max of 10 chars + print out bottom field to get total length to 20
         */
-        let maxIndivChars = 8
-        let maxTotalChars = 16
+        let maxIndivChars = 10
+        let maxTotalChars = 20
         let topLengthUsed = min(meme.topText.characters.count,maxIndivChars)
         let bottomLengthUsed = min(meme.bottomText.characters.count,maxTotalChars - topLengthUsed)
         let topTextUsed = meme.topText.substringToIndex(meme.topText.startIndex.advancedBy(topLengthUsed))
         let bottomTextUsed = meme.bottomText.substringToIndex(meme.bottomText.startIndex.advancedBy(bottomLengthUsed))
         cell.sentMemesCellLabel.text = topTextUsed + "..." + bottomTextUsed   // add the fields together with a ... in the middle
-        
         // Set the image
         cell.sentMemesCellImage.image = meme.memedImage
-        
         return cell
     }
     

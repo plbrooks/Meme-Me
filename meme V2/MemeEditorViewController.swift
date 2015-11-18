@@ -17,7 +17,6 @@ class MemeEditorViewController: UIViewController, UINavigationControllerDelegate
     @IBOutlet weak var topCenterTextField: UITextField!
     @IBOutlet weak var bottomCenterTextField: UITextField!
     
-    
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var cancel: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
@@ -35,6 +34,7 @@ class MemeEditorViewController: UIViewController, UINavigationControllerDelegate
     var bottomCenterTextEntered = false
     var useCenterTextFields = false
     var viewOriginalFramePositionY: CGFloat = 0
+    var activeField: UITextField?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -119,6 +119,7 @@ class MemeEditorViewController: UIViewController, UINavigationControllerDelegate
     @IBAction func pickAnImage(sender: UIBarButtonItem) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
+        shareButton.enabled = false
         var sourceType: UIImagePickerControllerSourceType
         switch sender.tag { // could be more compact but use switch so easy to expand later if needed
         case 0:
@@ -161,6 +162,12 @@ class MemeEditorViewController: UIViewController, UINavigationControllerDelegate
     // Text field processing. Each method used for both text fields
     func textFieldDidBeginEditing(textField: UITextField) {
         textField.text = "" // blank out default text
+        activeField = textField
+    }
+    
+    // Text field processing. Each method used for both text fields
+    func textFieldDidEndEditing(textField: UITextField) {
+        activeField = nil
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -212,7 +219,14 @@ class MemeEditorViewController: UIViewController, UINavigationControllerDelegate
     }
     
     func keyboardWillShow(notification: NSNotification) {
-        if (view.frame.origin.y == viewOriginalFramePositionY) { // if view has not already shifted
+        let info: NSDictionary = notification.userInfo!
+        let value = info.valueForKey(UIKeyboardFrameBeginUserInfoKey) as! NSValue
+        let keyboardSize: CGSize = value.CGRectValue().size
+        var aRect = view.frame
+        aRect.size.height -= keyboardSize.height
+        let activeTextFieldRect: CGRect? = activeField?.frame
+        let activeTextFieldOrigin: CGPoint? = activeTextFieldRect?.origin
+        if (!CGRectContainsPoint(aRect, activeTextFieldOrigin!)) {
             view.frame.origin.y -= getKeyboardHeight(notification)
         }
     }
@@ -220,9 +234,9 @@ class MemeEditorViewController: UIViewController, UINavigationControllerDelegate
     func keyboardWillHide(notification: NSNotification) {
         if (view.frame.origin.y != viewOriginalFramePositionY) {   // if view has not already shifted
             view.frame.origin.y += getKeyboardHeight(notification)
-            if (topTextEntered && bottomTextEntered && imageView.image != nil) {
-                shareButton.enabled = true
-            }
+        }
+        if ((topTextEntered && bottomTextEntered) || (topCenterTextEntered && bottomCenterTextEntered)  && imageView.image != nil) {
+            shareButton.enabled = true
         }
     }
     
@@ -282,7 +296,6 @@ class MemeEditorViewController: UIViewController, UINavigationControllerDelegate
         UIGraphicsEndImageContext()
         
         toolbar.hidden = false  // now show tool bar
-        //navbar.hidden = false
         return memedImage
     }
     
