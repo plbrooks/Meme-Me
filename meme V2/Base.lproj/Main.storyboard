@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="bs2-yR-2Pw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="bs2-yR-2Pw">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -14,7 +14,6 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" id="79x-zy-k5z">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
@@ -34,7 +33,6 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="asO-tx-QUn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </navigationBar>
                     <connections>
                         <segue destination="0Cl-uR-HMj" kind="relationship" relationship="rootViewController" id="RW8-c7-oKx"/>
@@ -58,7 +56,6 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="130" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kZc-6O-ket">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
-                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MemeTableCell" rowHeight="130" id="ilC-uI-9hW" customClass="SentMemesTableCell" customModule="meme_V2" customModuleProvider="target">
@@ -70,14 +67,12 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wlU-XG-4DF">
                                                     <rect key="frame" x="8" y="-2" width="132" height="132"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="wlU-XG-4DF" secondAttribute="height" multiplier="1:1" id="YaD-3A-7Pp"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i5M-jZ-Zx1">
                                                     <rect key="frame" x="523" y="49" width="61" height="30"/>
-                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -86,7 +81,6 @@
                                                     </variation>
                                                 </label>
                                             </subviews>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="wlU-XG-4DF" firstAttribute="top" secondItem="D2R-oV-kvn" secondAttribute="topMargin" constant="-10" id="1gN-ge-ov0"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="i5M-jZ-Zx1" secondAttribute="trailing" constant="8" id="M0j-Yu-er0"/>
@@ -98,7 +92,6 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="400" height="129"/>
                                             </variation>
                                         </tableViewCellContentView>
-                                        <animations/>
                                         <connections>
                                             <outlet property="sentMemesCellImage" destination="wlU-XG-4DF" id="ukl-Mp-L59"/>
                                             <outlet property="sentMemesCellLabel" destination="i5M-jZ-Zx1" id="58d-FO-1Dj"/>
@@ -108,16 +101,14 @@
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press the Add (plus sign) button in the upper right to add your first meme!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xXM-gR-Bsu">
                                 <rect key="frame" x="142" y="278" width="316" height="44"/>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="316" id="UBd-er-069"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="xXM-gR-Bsu" firstAttribute="centerY" secondItem="9Wa-kc-3Ga" secondAttribute="centerY" id="9sK-39-KIG"/>
@@ -153,7 +144,6 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2oc-96-Q19">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </navigationBar>
                     <connections>
                         <segue destination="DDk-QZ-pA4" kind="relationship" relationship="rootViewController" id="5ka-Ac-Efo"/>
@@ -170,7 +160,6 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="hhN-T0-h4s">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="aTB-VN-vhs">
                             <size key="itemSize" width="105" height="105"/>
@@ -188,13 +177,10 @@
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OeC-G8-Xdn">
                                             <rect key="frame" x="0.0" y="0.0" width="105" height="105"/>
-                                            <animations/>
                                         </imageView>
                                     </subviews>
-                                    <animations/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <animations/>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -229,24 +215,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0z1-Zj-fvk">
-                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
-                                <animations/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose a Camera or Album meme, enter TOP and BOTTOM text, then Share!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wam-sF-mGd">
-                                <rect key="frame" x="143" y="273" width="314" height="54"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="314" id="9kM-B2-uct"/>
-                                    <constraint firstAttribute="height" constant="54" id="J1e-vV-PWL"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ofa-Ik-fMs">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
-                                <animations/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="DZp-C8-fQd"/>
                                     <barButtonItem systemItem="camera" id="a6e-RD-5OP">
@@ -263,32 +233,40 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="jEc-6P-69P"/>
                                 </items>
                             </toolbar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" borderStyle="roundedRect" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0Zb-TT-nCG">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" borderStyle="roundedRect" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0Zb-TT-nCG">
                                 <rect key="frame" x="252" y="101" width="97" height="30"/>
-                                <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nuu-zS-0cU">
                                 <rect key="frame" x="208" y="491" width="184" height="30"/>
-                                <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" borderStyle="roundedRect" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="vap-eR-gkC">
                                 <rect key="frame" x="252" y="207" width="97" height="30"/>
-                                <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J56-56-fYf">
                                 <rect key="frame" x="208" y="366" width="184" height="30"/>
-                                <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0z1-Zj-fvk">
+                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose a Camera or Album option below, type over TOP and BOTTOM text, then Share!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="wam-sF-mGd">
+                                <rect key="frame" x="143" y="273" width="314" height="54"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="314" id="9kM-B2-uct"/>
+                                    <constraint firstAttribute="height" constant="54" id="J1e-vV-PWL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ofa-Ik-fMs" firstAttribute="leading" secondItem="6qM-Kg-KJW" secondAttribute="leadingMargin" constant="-20" id="05M-YF-sut"/>
@@ -367,10 +345,8 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3SD-9d-Dbj">
                                 <rect key="frame" x="0.0" y="39" width="600" height="561"/>
-                                <animations/>
                             </imageView>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="3SD-9d-Dbj" firstAttribute="leading" secondItem="w2M-6v-PCb" secondAttribute="leadingMargin" constant="-20" id="3EY-LM-o2R"/>
@@ -395,6 +371,6 @@
         <image name="Table" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="P2G-1x-ldR"/>
+        <segue reference="Rco-KI-siZ"/>
     </inferredMetricsTieBreakers>
 </document>

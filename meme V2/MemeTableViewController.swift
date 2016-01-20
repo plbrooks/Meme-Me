@@ -13,6 +13,10 @@ class MemeTableViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var instructionLabel: UILabel!
    
+    /********************************************************************************************************
+     * Use global var in appdelegate per Udacity                                                            *
+     ********************************************************************************************************/
+
     var allMemes: [Meme] {
         return (UIApplication.sharedApplication().delegate as! AppDelegate).memes
     }
