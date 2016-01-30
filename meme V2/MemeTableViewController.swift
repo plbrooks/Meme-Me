@@ -39,6 +39,10 @@ class MemeTableViewController: UIViewController, UITableViewDataSource, UITableV
         return allMemes.count
     }
     
+    
+    /********************************************************************************************************
+     * create the table cells                                                                               *
+     ********************************************************************************************************/
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MemeTableCell") as! SentMemesTableCell   // downcasting links in the custom class
         let meme = allMemes[indexPath.row]
